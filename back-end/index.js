@@ -8,7 +8,7 @@ const express = require("express"),
   app = express(),
   UrlModel = require('./Models/UrlShortenModel');
 
-mongoose.connect('mongodb://localhost/shortenUrlApp');
+mongoose.connect('mongodb://localhost/shortenUrlApp', { useNewUrlParser: true });
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, 'connection error:'));
 
