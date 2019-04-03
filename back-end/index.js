@@ -21,6 +21,46 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
+//Post Request (adding URL to DB)
+app.post("/url", async (req, res) => {
+
+  const { originalUrl, shortBaseUrl } = req.body;
+  if (validUrl.isUri(shortBaseUrl)) {
+  } else {
+    return res
+      .status(401)
+      .json(
+        "Invalid Base Url"
+      );
+  }
+
+  const urlCode = shortid.generate();
+  const updatedAt = new Date();
+  if (validUrl.isUri(originalUrl)) {
+
+    shortUrl = shortBaseUrl + "/" + urlCode;
+    const item = new UrlModel({
+      originalUrl,
+      shortUrl,
+      urlCode,
+      updatedAt
+    });
+    await item.save();
+    res.status(200).json(item);
+
+  } else {
+    return res
+      .status(401)
+      .json(
+        "Invalid Original Url"
+      );
+  }
+});
+
+//Get Request Fetches URLS from DB
+app.get('/url', (req, res) => {
+  console.log('Get reuqest successful');
+})
 
 
 
