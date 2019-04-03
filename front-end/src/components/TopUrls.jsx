@@ -17,6 +17,13 @@ export default class TopUrls extends Component {
     })
   }
 
+  componentDidUpdate() {
+    axios('http://localhost:8080/urls').then(res => {
+      this.setState({
+        urls: res.data
+      })
+    })
+  }
 
   render() {
     const { urls } = this.state;
@@ -25,7 +32,7 @@ export default class TopUrls extends Component {
 
     return (
       <div className="pouplar card card-body">
-        <h2>Top 5 URLs Requesed</h2>
+        <h2>Top 5 Requested URLs</h2>
         <ul className="list-group">
           {topUrls}
         </ul>

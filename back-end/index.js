@@ -62,7 +62,7 @@ app.get('/urls', (req, res) => {
   UrlModel.aggregate([
     { $match: {} },
     { $group: { _id: "$originalUrl", count: { $sum: 1 } } }
-  ]).limit(5).sort({ count: -1 })
+  ]).sort({ count: -1 }).limit(5)
     .then(data => {
       res.json(data)
     })
