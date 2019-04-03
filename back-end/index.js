@@ -59,7 +59,13 @@ app.post("/url", async (req, res) => {
 
 //Get Request Fetches URLS from DB
 app.get('/url', (req, res) => {
-  console.log('Get reuqest successful');
+  UrlModel.aggregate([
+    { $match: {} },
+    { $group: { _id: "$originalUrl", count: { $sum: 1 } } }
+  ]).limit(5).sort({ count: -1 })
+    .then(data => {
+      res.json(data)
+    })
 })
 
 
