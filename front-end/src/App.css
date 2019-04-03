@@ -3,3 +3,7 @@
   margin: 20px auto;
   display: flex;
 }
+
+.card-body {
+  background: rgb(250, 250, 250);
+}

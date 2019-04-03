@@ -22,7 +22,7 @@ app.use(cors());
 
 
 //Post Request (adding URL to DB)
-app.post("/url", async (req, res) => {
+app.post("/urls", async (req, res) => {
 
   const { originalUrl, shortBaseUrl } = req.body;
   if (validUrl.isUri(shortBaseUrl)) {
@@ -58,7 +58,7 @@ app.post("/url", async (req, res) => {
 });
 
 //Get Request Fetches URLS from DB
-app.get('/url', (req, res) => {
+app.get('/urls', (req, res) => {
   UrlModel.aggregate([
     { $match: {} },
     { $group: { _id: "$originalUrl", count: { $sum: 1 } } }

@@ -29,7 +29,7 @@ export default class Form extends Component {
 
     const config = {
       method: "POST",
-      url: "http://localhost:8080/url",
+      url: "http://localhost:8080/urls",
       data: newUrl,
       headers: {
         "content-type": "application/json"
@@ -65,7 +65,7 @@ export default class Form extends Component {
     this.setState({
       formErrors, [name]: value
     }, () => {
-      console.log(this.state);
+      // console.log(this.state);
     })
   }
 
